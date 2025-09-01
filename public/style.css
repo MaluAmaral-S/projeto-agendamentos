@@ -1,0 +1,140 @@
+/* Import da fonte Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fonte global */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #ffffff;
+  color: #333;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* Navbar */
+nav {
+  backdrop-filter: blur(8px);
+  background-color: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease-in-out;
+}
+
+nav h1 {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Links do menu */
+.nav-link {
+  position: relative;
+  padding: 5px 0;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #704fb7;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: #704abf;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Botões */
+button, a.btn, .bg-\[\#704abf\] {
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 12px rgba(112, 74, 191, 0.2);
+}
+
+button:hover, a.btn:hover, .bg-\[\#704abf\]:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 8px 20px rgba(112, 74, 191, 0.35);
+}
+
+/* Cards de planos */
+.plan-card {
+  transition: all 0.3s ease-in-out;
+  border: 1px solid #eee;
+}
+
+.plan-card:hover {
+  transform: scale(1.05);
+  border-color: #704abf;
+  box-shadow: 0px 8px 25px rgba(112, 74, 191, 0.25);
+}
+
+/* Sections */
+.section {
+  padding: 80px 20px;
+}
+
+.section h2 {
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.section p {
+  line-height: 1.6;
+  font-weight: 400;
+  color: #555;
+}
+
+/* Hero */
+#home h2 {
+  background: linear-gradient(90deg, #704abf, #9c6fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#home a {
+  font-weight: 600;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .sections-container {
+    flex-direction: column;
+    transform: none !important;
+  }
+
+  nav ul {
+    gap: 1rem;
+  }
+}
+
+#home {
+  background-image: url('./hero2.png');
+ /* Ajusta a imagem para cobrir toda a seção */
+  background-size: cover;
+  /* Centraliza a imagem na seção */
+  background-position: center;
+
+  /* Evita que a imagem se repita caso a seção seja muito grande */
+  background-repeat: no-repeat;
+  
+  /* Garante que a seção tenha uma altura mínima para a imagem ser visível */
+  /* '100vh' significa 100% da altura da tela (viewport height) */
+  min-height: 100vh; 
+
+  /* Opcional: Estilos para o conteúdo dentro da seção home */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white; /* Mude a cor do texto para ser legível sobre a imagem */
+}

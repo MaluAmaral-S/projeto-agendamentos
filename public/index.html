@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgendaPro - Sistema de Agendamento Online</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .gradient-bg {
+            background: linear-gradient(135deg, #704abf 0%, #9c6fff 100%);
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, #704abf 0%, #9c6fff 50%, #3b82f6 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(112, 74, 191, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-3">
+                    <div class="flex items-center justify-center w-10 h-10 bg-[#704abf] rounded-lg">
+                        <i data-lucide="calendar-check" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold text-[#704abf]">AgendaPro</h1>
+                </div>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#inicio" class="text-gray-700 hover:text-[#704abf] font-medium">Início</a>
+                    <a href="#recursos" class="text-gray-700 hover:text-[#704abf] font-medium">Recursos</a>
+                    <a href="#planos" class="text-gray-700 hover:text-[#704abf] font-medium">Planos</a>
+                    <a href="#contato" class="text-gray-700 hover:text-[#704abf] font-medium">Contato</a>
+                </nav>
+                <div class="flex items-center space-x-4">
+                    <a href="login.html" class="text-gray-700 hover:text-[#704abf] font-medium">Entrar</a>
+                    <a href="login.html" class="bg-[#704abf] hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+                        Começar Grátis
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-bg text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                    Transforme seu negócio com
+                    <span class="text-yellow-300">agendamentos online</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto">
+                    Simplifique a gestão de horários, aumente suas vendas e ofereça uma experiência incrível para seus clientes
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="login.html" class="bg-white text-[#704abf] px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors flex items-center justify-center">
+                        <i data-lucide="rocket" class="w-5 h-5 mr-2"></i>
+                        Começar Agora - Grátis
+                    </a>
+                    <a href="#recursos" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-[#704abf] transition-colors flex items-center justify-center">
+                        <i data-lucide="play-circle" class="w-5 h-5 mr-2"></i>
+                        Ver Como Funciona
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recursos -->
+    <section id="recursos" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Tudo que você precisa em um só lugar</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Recursos poderosos para automatizar seu negócio e conquistar mais clientes
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover bg-white rounded-xl p-8 border border-gray-200 transition-all duration-300">
+                    <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="calendar-days" class="w-8 h-8 text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Agendamento Online 24/7</h3>
+                    <p class="text-gray-600">Seus clientes podem agendar a qualquer hora, de qualquer lugar. Sem ligações, sem complicações.</p>
+                </div>
+                
+                <div class="card-hover bg-white rounded-xl p-8 border border-gray-200 transition-all duration-300">
+                    <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="smartphone" class="w-8 h-8 text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Notificações Automáticas</h3>
+                    <p class="text-gray-600">Lembretes por WhatsApp e email reduzem faltas e mantêm seus clientes sempre informados.</p>
+                </div>
+                
+                <div class="card-hover bg-white rounded-xl p-8 border border-gray-200 transition-all duration-300">
+                    <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="bar-chart-3" class="w-8 h-8 text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Relatórios Inteligentes</h3>
+                    <p class="text-gray-600">Acompanhe seu faturamento, horários mais procurados e performance do seu negócio.</p>
+                </div>
+                
+                <div class="card-hover bg-white rounded-xl p-8 border border-gray-200 transition-all duration-300">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="users" class="w-8 h-8 text-yellow-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Gestão de Clientes</h3>
+                    <p class="text-gray-600">Histórico completo, preferências e dados de contato organizados em um só lugar.</p>
+                </div>
+                
+                <div class="card-hover bg-white rounded-xl p-8 border border-gray-200 transition-all duration-300">
+                    <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="credit-card" class="w-8 h-8 text-red-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Pagamentos Online</h3>
+                    <p class="text-gray-600">Receba pagamentos antecipados e reduza cancelamentos de última hora.</p>
+                </div>
+                
+                <div class="card-hover bg-white rounded-xl p-8 border border-gray-200 transition-all duration-300">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="settings" class="w-8 h-8 text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Personalização Total</h3>
+                    <p class="text-gray-600">Configure horários, serviços, preços e regras do seu jeito. Sua marca, suas regras.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Planos -->
+    <section id="planos" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Escolha o plano ideal para seu negócio</h2>
+                <p class="text-xl text-gray-600">Comece grátis e escale conforme sua empresa cresce</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Plano Básico -->
+                <div class="bg-white rounded-2xl p-8 border border-gray-200 card-hover transition-all duration-300">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Básico</h3>
+                        <p class="text-gray-600">Ideal para pequenas empresas</p>
+                        <div class="mt-4">
+                            <span class="text-4xl font-bold text-gray-900">R$ 49</span>
+                            <span class="text-gray-600">/mês</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                            <span>Até 100 agendamentos/mês</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                            <span>Página de agendamento online</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                            <span>Suporte por e-mail</span>
+                        </li>
+                    </ul>
+                    <a href="login.html" class="w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors block text-center">
+                        Começar Grátis
+                    </a>
+                </div>
+                
+                <!-- Plano Premium -->
+                <div class="bg-[#704abf] rounded-2xl p-8 card-hover transition-all duration-300 relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <span class="bg-yellow-400 text-yellow-900 px-4 py-1 rounded-full text-sm font-semibold">Mais Popular</span>
+                    </div>
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-white mb-2">Premium</h3>
+                        <p class="text-white/80">Para empresas em crescimento</p>
+                        <div class="mt-4">
+                            <span class="text-4xl font-bold text-white">R$ 99</span>
+                            <span class="text-white/80">/mês</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-white mr-3"></i>
+                            <span class="text-white">Agendamentos ilimitados</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-white mr-3"></i>
+                            <span class="text-white">Notificações WhatsApp</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-white mr-3"></i>
+                            <span class="text-white">Relatórios avançados</span>
+                        </li>
+                    </ul>
+                    <a href="login.html" class="w-full bg-white text-[#704abf] hover:bg-gray-50 font-semibold py-3 px-6 rounded-lg transition-colors block text-center">
+                        Começar Grátis
+                    </a>
+                </div>
+                
+                <!-- Plano Enterprise -->
+                <div class="bg-white rounded-2xl p-8 border border-gray-200 card-hover transition-all duration-300">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Enterprise</h3>
+                        <p class="text-gray-600">Para grandes empresas</p>
+                        <div class="mt-4">
+                            <span class="text-4xl font-bold text-gray-900">R$ 199</span>
+                            <span class="text-gray-600">/mês</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                            <span>Tudo do Premium</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                            <span>Múltiplas filiais</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                            <span>Suporte 24/7</span>
+                        </li>
+                    </ul>
+                    <a href="login.html" class="w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors block text-center">
+                        Começar Grátis
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="gradient-bg text-white py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold mb-6">Pronto para revolucionar seu negócio?</h2>
+            <p class="text-xl text-white/90 mb-8">
+                Junte-se a milhares de empresas que já transformaram seus agendamentos com o AgendaPro
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="login.html" class="bg-white text-[#704abf] px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors flex items-center justify-center">
+                    <i data-lucide="rocket" class="w-5 h-5 mr-2"></i>
+                    Começar Teste Grátis
+                </a>
+                <a href="#contato" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-[#704abf] transition-colors flex items-center justify-center">
+                    <i data-lucide="phone" class="w-5 h-5 mr-2"></i>
+                    Falar com Especialista
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contato" class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="flex items-center justify-center w-10 h-10 bg-[#704abf] rounded-lg">
+                            <i data-lucide="calendar-check" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">AgendaPro</h3>
+                    </div>
+                    <p class="text-gray-400">
+                        A solução completa para gestão de agendamentos online.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Produto</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#recursos" class="hover:text-white">Recursos</a></li>
+                        <li><a href="#planos" class="hover:text-white">Planos</a></li>
+                        <li><a href="login.html" class="hover:text-white">Entrar</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Suporte</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Central de Ajuda</a></li>
+                        <li><a href="#" class="hover:text-white">Contato</a></li>
+                        <li><a href="#" class="hover:text-white">Status</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Contato</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center">
+                            <i data-lucide="mail" class="w-4 h-4 mr-2"></i>
+                            contato@agendapro.com
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="phone" class="w-4 h-4 mr-2"></i>
+                            (11) 99999-9999
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 AgendaPro. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        
+        // Smooth scroll para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

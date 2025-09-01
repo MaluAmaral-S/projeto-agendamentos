@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento Online - AgendaPro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .gradient-bg {
+            background: linear-gradient(135deg, #704abf 0%, #9c6fff 100%);
+        }
+        .step-active {
+            background: linear-gradient(135deg, #704abf 0%, #9c6fff 100%);
+            color: white;
+        }
+        .step-completed {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+        .step-inactive {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+        .service-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(112, 74, 191, 0.15);
+        }
+        .time-slot:hover {
+            background: linear-gradient(135deg, #704abf 0%, #9c6fff 100%);
+            color: white;
+        }
+        .time-slot.selected {
+            background: linear-gradient(135deg, #704abf 0%, #9c6fff 100%);
+            color: white;
+        }
+        .calendar-day:hover {
+            background: linear-gradient(135deg, #704abf 0%, #9c6fff 100%);
+            color: white;
+        }
+        .calendar-day.selected {
+            background: linear-gradient(135deg, #704abf 0%, #9c6fff 100%);
+            color: white;
+        }
+        .calendar-day.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+    <!-- Header -->
+    <header class="gradient-bg shadow-lg">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-center py-6">
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center justify-center w-12 h-12 bg-white rounded-full shadow-md">
+                        <i data-lucide="calendar-check" class="w-6 h-6 text-[#704abf]"></i>
+                    </div>
+                    <div class="text-center">
+                        <h1 class="text-2xl font-bold text-white">Agendamento Online</h1>
+                        <p id="empresa-nome" class="text-white/80 text-sm">Carregando...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Progress Steps -->
+    <div class="bg-white shadow-sm border-b">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div id="step-1" class="step-active w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm">1</div>
+                    <div class="hidden sm:block text-sm font-medium text-gray-700">Serviço</div>
+                </div>
+                <div class="flex-1 h-1 bg-gray-200 mx-4">
+                    <div id="progress-1-2" class="h-full bg-gray-200 transition-all duration-300"></div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div id="step-2" class="step-inactive w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm">2</div>
+                    <div class="hidden sm:block text-sm font-medium text-gray-700">Data</div>
+                </div>
+                <div class="flex-1 h-1 bg-gray-200 mx-4">
+                    <div id="progress-2-3" class="h-full bg-gray-200 transition-all duration-300"></div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div id="step-3" class="step-inactive w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm">3</div>
+                    <div class="hidden sm:block text-sm font-medium text-gray-700">Horário</div>
+                </div>
+                <div class="flex-1 h-1 bg-gray-200 mx-4">
+                    <div id="progress-3-4" class="h-full bg-gray-200 transition-all duration-300"></div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div id="step-4" class="step-inactive w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm">4</div>
+                    <div class="hidden sm:block text-sm font-medium text-gray-700">Dados</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Loading State -->
+        <div id="loading-state" class="text-center py-12">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-[#704abf]/10 rounded-full mb-4">
+                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-[#704abf]"></div>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Carregando informações...</h3>
+            <p class="text-gray-600">Aguarde enquanto buscamos os dados da empresa</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="error-state" class="hidden bg-red-50 border border-red-200 rounded-xl p-6 text-center">
+            <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i data-lucide="alert-triangle" class="w-6 h-6 text-red-600"></i>
+            </div>
+            <h3 class="text-lg font-semibold text-red-900 mb-2">Erro ao Carregar</h3>
+            <p id="error-message" class="text-red-700 mb-4"></p>
+            <button onclick="location.reload()" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-medium">
+                Tentar Novamente
+            </button>
+        </div>
+
+        <!-- Step 1: Escolher Serviço -->
+        <div id="step-servico" class="step-content hidden">
+            <div class="bg-white rounded-xl shadow-sm border p-6 mb-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-2 flex items-center">
+                    <i data-lucide="scissors" class="w-6 h-6 mr-3 text-[#704abf]"></i>
+                    Escolha o Serviço
+                </h2>
+                <p class="text-gray-600 mb-6">Selecione o serviço que você deseja agendar</p>
+                
+                <div id="servicos-container" class="grid gap-4">
+                    <!-- Serviços serão carregados dinamicamente -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Escolher Data -->
+        <div id="step-data" class="step-content hidden">
+            <div class="bg-white rounded-xl shadow-sm border p-6 mb-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-2 flex items-center">
+                    <i data-lucide="calendar" class="w-6 h-6 mr-3 text-[#704abf]"></i>
+                    Escolha a Data
+                </h2>
+                <p class="text-gray-600 mb-6">Selecione o dia para seu agendamento</p>
+                
+                <div class="flex items-center justify-between mb-6">
+                    <button id="prev-month" class="p-2 hover:bg-gray-100 rounded-lg">
+                        <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                    </button>
+                    <h3 id="current-month" class="text-lg font-semibold text-gray-900"></h3>
+                    <button id="next-month" class="p-2 hover:bg-gray-100 rounded-lg">
+                        <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-7 gap-2 mb-4">
+                    <div class="text-center text-sm font-medium text-gray-500 py-2">Dom</div>
+                    <div class="text-center text-sm font-medium text-gray-500 py-2">Seg</div>
+                    <div class="text-center text-sm font-medium text-gray-500 py-2">Ter</div>
+                    <div class="text-center text-sm font-medium text-gray-500 py-2">Qua</div>
+                    <div class="text-center text-sm font-medium text-gray-500 py-2">Qui</div>
+                    <div class="text-center text-sm font-medium text-gray-500 py-2">Sex</div>
+                    <div class="text-center text-sm font-medium text-gray-500 py-2">Sáb</div>
+                </div>
+                
+                <div id="calendar-days" class="grid grid-cols-7 gap-2">
+                    <!-- Dias serão carregados dinamicamente -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: Escolher Horário -->
+        <div id="step-horario" class="step-content hidden">
+            <div class="bg-white rounded-xl shadow-sm border p-6 mb-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-2 flex items-center">
+                    <i data-lucide="clock" class="w-6 h-6 mr-3 text-[#704abf]"></i>
+                    Escolha o Horário
+                </h2>
+                <p class="text-gray-600 mb-6">Selecione o horário disponível para seu agendamento</p>
+                
+                <div id="horarios-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                    <!-- Horários serão carregados dinamicamente -->
+                </div>
+                
+                <div id="no-horarios" class="hidden text-center py-8">
+                    <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="clock-x" class="w-6 h-6 text-gray-400"></i>
+                    </div>
+                    <p class="text-gray-600">Nenhum horário disponível para esta data</p>
+                    <p class="text-sm text-gray-500 mt-1">Tente selecionar outra data</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 4: Dados do Cliente -->
+        <div id="step-dados" class="step-content hidden">
+            <div class="bg-white rounded-xl shadow-sm border p-6 mb-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-2 flex items-center">
+                    <i data-lucide="user" class="w-6 h-6 mr-3 text-[#704abf]"></i>
+                    Seus Dados
+                </h2>
+                <p class="text-gray-600 mb-6">Preencha suas informações para finalizar o agendamento</p>
+                
+                <form id="form-agendamento" class="space-y-6">
+                    <div>
+                        <label for="cliente-nome" class="block text-sm font-medium text-gray-700 mb-2">Nome Completo *</label>
+                        <input type="text" id="cliente-nome" required 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#704abf] focus:border-[#704abf] transition-colors"
+                               placeholder="Digite seu nome completo">
+                    </div>
+                    
+                    <div>
+                        <label for="cliente-telefone" class="block text-sm font-medium text-gray-700 mb-2">Telefone *</label>
+                        <input type="tel" id="cliente-telefone" required 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#704abf] focus:border-[#704abf] transition-colors"
+                               placeholder="(11) 99999-9999">
+                    </div>
+                    
+                    <div>
+                        <label for="cliente-email" class="block text-sm font-medium text-gray-700 mb-2">E-mail (opcional)</label>
+                        <input type="email" id="cliente-email" 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#704abf] focus:border-[#704abf] transition-colors"
+                               placeholder="seu@email.com">
+                    </div>
+                    
+                    <!-- Resumo do Agendamento -->
+                    <div class="bg-gray-50 rounded-lg p-4 border">
+                        <h4 class="font-semibold text-gray-900 mb-3">Resumo do Agendamento</h4>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Serviço:</span>
+                                <span id="resumo-servico" class="font-medium text-gray-900">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Data:</span>
+                                <span id="resumo-data" class="font-medium text-gray-900">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Horário:</span>
+                                <span id="resumo-horario" class="font-medium text-gray-900">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Duração:</span>
+                                <span id="resumo-duracao" class="font-medium text-gray-900">-</span>
+                            </div>
+                            <div class="flex justify-between border-t pt-2">
+                                <span class="text-gray-600">Preço:</span>
+                                <span id="resumo-preco" class="font-semibold text-[#704abf]">-</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-[#704abf] hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center">
+                        <i data-lucide="check" class="w-5 h-5 mr-2"></i>
+                        Confirmar Agendamento
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Success State -->
+        <div id="success-state" class="hidden bg-green-50 border border-green-200 rounded-xl p-8 text-center">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i data-lucide="check-circle" class="w-8 h-8 text-green-600"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-green-900 mb-2">Agendamento Confirmado!</h3>
+            <p class="text-green-700 mb-6">Seu agendamento foi realizado com sucesso. Você receberá uma confirmação em breve.</p>
+            
+            <div class="bg-white rounded-lg p-4 border border-green-200 mb-6">
+                <h4 class="font-semibold text-gray-900 mb-3">Detalhes do Agendamento</h4>
+                <div id="success-details" class="space-y-2 text-sm">
+                    <!-- Detalhes serão preenchidos dinamicamente -->
+                </div>
+            </div>
+            
+            <button onclick="location.reload()" class="bg-[#704abf] hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium">
+                Fazer Novo Agendamento
+            </button>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div id="navigation-buttons" class="hidden flex justify-between mt-8">
+            <button id="btn-voltar" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-medium flex items-center">
+                <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
+                Voltar
+            </button>
+            <button id="btn-continuar" class="bg-[#704abf] hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium flex items-center">
+                Continuar
+                <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+            </button>
+        </div>
+    </main>
+
+    <!-- Toast de Notificação -->
+    <div id="toast" class="fixed top-4 right-4 bg-white rounded-lg shadow-lg border p-4 transform translate-x-full transition-transform duration-300 z-50">
+        <div class="flex items-center">
+            <div id="toast-icon" class="mr-3"></div>
+            <div>
+                <div id="toast-title" class="font-semibold text-gray-800"></div>
+                <div id="toast-message" class="text-sm text-gray-600"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="agendamento.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
+

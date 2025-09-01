@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planos - AgendaPro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .gradient-bg {
+            background: linear-gradient(135deg, #704abf 0%, #9c6fff 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(112, 74, 191, 0.2);
+        }
+        .plan-popular {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+        .plan-basic {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+        .plan-enterprise {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+        }
+        .check-icon {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+    <!-- Header -->
+    <header class="gradient-bg shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-6">
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center justify-center w-12 h-12 bg-white rounded-full shadow-md">
+                        <i data-lucide="calendar-check" class="w-6 h-6 text-[#704abf]"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-white">AgendaPro</h1>
+                        <p class="text-white/80 text-sm">Planos e Assinaturas</p>
+                    </div>
+                </div>
+                <a href="painel.html" class="bg-white/20 hover:bg-white/30 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200 flex items-center">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
+                    Voltar ao Painel
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- Status da Assinatura -->
+        <div id="status-container" class="mb-12">
+            <!-- Será preenchido dinamicamente -->
+        </div>
+
+        <!-- Título e Descrição -->
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">Escolha o Plano Ideal</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Potencialize seu negócio com nossas ferramentas de agendamento online. 
+                Comece grátis e escale conforme sua empresa cresce.
+            </p>
+        </div>
+
+        <!-- Planos -->
+        <div class="grid md:grid-cols-3 gap-8 mb-12">
+            
+            <!-- Plano Básico -->
+            <div class="plan-basic rounded-2xl p-8 card-hover transition-all duration-300 border border-gray-200">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="zap" class="w-8 h-8 text-gray-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Básico</h3>
+                    <p class="text-gray-600">Ideal para pequenas empresas</p>
+                </div>
+                
+                <div class="text-center mb-8">
+                    <div class="flex items-baseline justify-center">
+                        <span class="text-5xl font-bold text-gray-900">R$ 49</span>
+                        <span class="text-gray-600 ml-2">/mês</span>
+                    </div>
+                </div>
+
+                <ul class="space-y-4 mb-8">
+                    <li class="flex items-center">
+                        <div class="check-icon w-6 h-6 rounded-full flex items-center justify-center mr-3">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                        <span class="text-gray-700">Até 100 agendamentos/mês</span>
+                    </li>
+                    <li class="flex items-center">
+                        <div class="check-icon w-6 h-6 rounded-full flex items-center justify-center mr-3">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                        <span class="text-gray-700">Página de agendamento online</span>
+                    </li>
+                    <li class="flex items-center">
+                        <div class="check-icon w-6 h-6 rounded-full flex items-center justify-center mr-3">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                        <span class="text-gray-700">Suporte por e-mail</span>
+                    </li>
+                    <li class="flex items-center">
+                        <div class="check-icon w-6 h-6 rounded-full flex items-center justify-center mr-3">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                        <span class="text-gray-700">Relatórios básicos</span>
+                    </li>
+                </ul>
+
+                <button onclick="assinarPlano('basico')" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+                    Assinar Plano Básico
+                </button>
+            </div>
+
+            <!-- Plano Premium (Popular) -->
+            <div class="plan-popular rounded-2xl p-8 card-hover transition-all duration-300 relative overflow-hidden">
+                <!-- Badge Popular -->
+                <div class="absolute top-0 right-0 bg-yellow-400 text-yellow-900 px-4 py-1 rounded-bl-lg font-semibold text-sm">
+                    Mais Popular
+                </div>
+                
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="star" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Premium</h3>
+                    <p class="text-white/80">Para empresas em crescimento</p>
+                </div>
+                
+                <div class="text-center mb-8">
+                    <div class="flex items-baseline justify-center">
+                        <span class="text-5xl font-bold text-white">R$ 99</span>
+                        <span class="text-white/80 ml-2">/mês</span>
+                    </div>
+                </div>
+
+                <ul class="space-y-4 mb-8">
+                    <li class="flex items-center">
+                        <div class="bg-white/20 w-6 h-6 rounded-full flex items-center justify-center mr-3">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                        <span class="text-white">Agendamentos ilimitados</span>
+                    </li>
+                    <li class="flex items-center">
+                        <div class="bg-white/20 w-6 h-6 rounded-full flex items-center justify-center mr-3">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                        <span class="text-white">Relatórios avançados</span>
+                    </li>
+                    <li class="flex items-center">
+                        <div class="bg-white/20 w-6 h-6 rounded-full flex items-center justify-center mr-3">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                        <span class="text-white">Notificações por WhatsApp</span>
+                    </li>
+                    <li class="flex items-center">
+                        <div class="bg-white/20 w-6 h-6 rounded-full flex items-center justify-center mr-3">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                        <span class="text-white">Suporte prioritário</span>
+                    </li>
+                    <li class="flex items-center">
+                        <div class="bg-white/20 w-6 h-6 rounded-full flex items-center justify-center mr-3">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                        <span class="text-white">Integração com calendários</span>
+                    </li>
+                </ul>
+
+                <button onclick="assinarPlano('premium')" class="w-full bg-white text-blue-600 hover:bg-gray-50 font-semibold py-3 px-6 rounded-lg transition-colors">
+                    Assinar Plano Premium
+                </button>
+            </div>
+
+            <!-- Plano Enterprise -->
+            <div class="plan-enterprise rounded-2xl p-8 card-hover transition-all duration-300">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="crown" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Enterprise</h3>
+                    <p class="text-white/80">Para grandes empresas</p>
+                </div>
+                
+                <div class="text-center mb-8">
+                    <div class="flex items-baseline justify-center">
+                        <span class="text-5xl font-bold text-white">R$ 199</span>
+                        <span class="text-white/80 ml-2">/mês</span>
+                    </div>
+                </div>
+
+                <ul class="space-y-4 mb-8">
+                    <li class="flex items-center">
+                        <div class="bg-white/20 w-6 h-6 rounded-full flex items-center justify-center mr-3">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                        <span class="text-white">Tudo do Premium</span>
+                    </li>
+                    <li class="flex items-center">
+                        <div class="bg-white/20 w-6 h-6 rounded-full flex items-center justify-center mr-3">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                        <span class="text-white">Múltiplas filiais</span>
+                    </li>
+                    <li class="flex items-center">
+                        <div class="bg-white/20 w-6 h-6 rounded-full flex items-center justify-center mr-3">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                        <span class="text-white">API personalizada</span>
+                    </li>
+                    <li class="flex items-center">
+                        <div class="bg-white/20 w-6 h-6 rounded-full flex items-center justify-center mr-3">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                        <span class="text-white">Suporte 24/7</span>
+                    </li>
+                    <li class="flex items-center">
+                        <div class="bg-white/20 w-6 h-6 rounded-full flex items-center justify-center mr-3">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                        <span class="text-white">Gerente de conta dedicado</span>
+                    </li>
+                </ul>
+
+                <button onclick="assinarPlano('enterprise')" class="w-full bg-white text-gray-900 hover:bg-gray-50 font-semibold py-3 px-6 rounded-lg transition-colors">
+                    Assinar Plano Enterprise
+                </button>
+            </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Perguntas Frequentes</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="font-semibold text-gray-900 mb-2">Posso cancelar a qualquer momento?</h4>
+                    <p class="text-gray-600">Sim, você pode cancelar sua assinatura a qualquer momento sem taxas de cancelamento.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-900 mb-2">Como funciona o período de teste?</h4>
+                    <p class="text-gray-600">Oferecemos 7 dias grátis para você testar todas as funcionalidades do plano escolhido.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-900 mb-2">Posso mudar de plano depois?</h4>
+                    <p class="text-gray-600">Claro! Você pode fazer upgrade ou downgrade do seu plano a qualquer momento.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-900 mb-2">Os dados ficam seguros?</h4>
+                    <p class="text-gray-600">Sim, utilizamos criptografia de ponta e seguimos as melhores práticas de segurança.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Garantia -->
+        <div class="text-center mt-12">
+            <div class="inline-flex items-center bg-green-50 text-green-800 px-6 py-3 rounded-full">
+                <i data-lucide="shield-check" class="w-5 h-5 mr-2"></i>
+                <span class="font-medium">Garantia de 30 dias - 100% do seu dinheiro de volta</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast de Notificação -->
+    <div id="toast" class="fixed top-4 right-4 bg-white rounded-lg shadow-lg border p-4 transform translate-x-full transition-transform duration-300 z-50">
+        <div class="flex items-center">
+            <div id="toast-icon" class="mr-3"></div>
+            <div>
+                <div id="toast-title" class="font-semibold text-gray-800"></div>
+                <div id="toast-message" class="text-sm text-gray-600"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmação -->
+    <div id="modal-confirmacao" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl p-6 max-w-md w-full mx-4">
+            <div class="flex items-center mb-4">
+                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                    <i data-lucide="credit-card" class="w-5 h-5 text-blue-600"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900">Confirmar Assinatura</h3>
+            </div>
+            <p id="modal-mensagem" class="text-gray-600 mb-6"></p>
+            <div class="flex justify-end space-x-3">
+                <button id="modal-cancelar" class="px-4 py-2 text-gray-600 hover:text-gray-800 font-medium">
+                    Cancelar
+                </button>
+                <button id="modal-confirmar" class="bg-[#704abf] hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-medium">
+                    Confirmar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Cancelamento -->
+    <div id="modal-cancelamento" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl p-6 max-w-md w-full mx-4">
+            <div class="flex items-center mb-4">
+                <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-3">
+                    <i data-lucide="alert-triangle" class="w-5 h-5 text-red-600"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900">Cancelar Assinatura</h3>
+            </div>
+            <p class="text-gray-600 mb-6">Tem certeza que deseja cancelar sua assinatura? Você perderá acesso a todas as funcionalidades premium.</p>
+            <div class="flex justify-end space-x-3">
+                <button id="cancelamento-voltar" class="px-4 py-2 text-gray-600 hover:text-gray-800 font-medium">
+                    Voltar
+                </button>
+                <button id="cancelamento-confirmar" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-medium">
+                    Cancelar Assinatura
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="planos.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
+
