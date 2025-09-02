@@ -24,7 +24,9 @@ app.use('/api/auth', authRoutes);
 
 
 // --- ROTAS PARA SERVIR AS PÁGINAS (VIEWS) ---
-
+app.get('/reset-password.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'reset-password.html'));
+});
 // Rotas Públicas (acessíveis por qualquer um)
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -50,7 +52,7 @@ app.get('/planos', protect, (req, res) => {
 // --- INICIALIZAÇÃO DO SERVIDOR ---
 
 // Sincroniza os modelos do Sequelize com o banco de dados e inicia o servidor
-sequelize.sync()
+sequelize.sync({ alter: true }) // <--- ADICIONE { alter: true } AQUI
     .then(() => {
         app.listen(PORT, () => {
             console.log(`Servidor rodando na porta ${PORT}`);
