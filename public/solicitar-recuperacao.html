@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Senha - AgendaPro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #704abf 0%, #9c6fff 100%); }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen flex items-center justify-center p-4">
+
+    <div class="w-full max-w-md bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-2xl">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-white mb-2">Recuperar Senha</h1>
+            <p class="text-white/80">Digite seu e-mail para receber o link de redefinição.</p>
+        </div>
+
+        <form id="request-form" class="space-y-4">
+            <div>
+                <label for="email" class="block text-white/90 text-sm font-medium mb-2">
+                    E-mail
+                </label>
+                <input type="email" id="email" required
+                       class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/60"
+                       placeholder="seu@email.com">
+            </div>
+            <button type="submit"
+                    class="w-full bg-white text-[#704abf] font-semibold py-3 px-4 rounded-lg transition-all duration-200">
+                Enviar Link de Recuperação
+            </button>
+        </form>
+        <div id="message" class="mt-4 text-center text-white h-5"></div>
+        <div class="text-center mt-6">
+            <a href="login.html" class="text-white/80 hover:text-white text-sm">Voltar para o Login</a>
+        </div>
+    </div>
+
+    <script src="solicitar-recuperacao.js"></script>
+</body>
+</html>
