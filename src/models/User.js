@@ -28,13 +28,28 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  passwordResetToken: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  passwordResetCode: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  passwordResetExpires: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  }
 });
 
-// Hook para criptografar a senha antes de criar o usuário
-User.beforeCreate(async (user) => {
-  const salt = await bcrypt.genSalt(10);
-  user.password = await bcrypt.hash(user.password, salt);
+// CORREÇÃO: Usamos 'beforeSave' para que a senha seja criptografada
+// tanto na criação (CREATE) quanto na atualização (UPDATE).
+User.beforeSave(async (user, options) => {
+  // Apenas criptografa a senha se ela foi modificada
+  if (user.changed('password')) {
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(user.password, salt);
+  }
 });
-
 
 module.exports = User;
