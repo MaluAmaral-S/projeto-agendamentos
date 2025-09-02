@@ -5,6 +5,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const sequelize = require('./src/config/database');
 const authRoutes = require('./src/routes/authRoutes');
+const serviceRoutes = require('./src/routes/serviceRoutes'); // 1. IMPORTAR AS NOVAS ROTAS
 const { protect } = require('./src/controllers/authController'); // Importa a função de proteção
 
 const app = express();
@@ -48,6 +49,8 @@ app.get('/planos', protect, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'planos.html'));
 });
 
+app.use('/api/auth', authRoutes);
+app.use('/api/servicos', serviceRoutes);
 
 // --- INICIALIZAÇÃO DO SERVIDOR ---
 
