@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const sequelize = require('./src/config/database');
 const authRoutes = require('./src/routes/authRoutes');
 const serviceRoutes = require('./src/routes/serviceRoutes'); // 1. IMPORTAR AS NOVAS ROTAS
+const businessHoursRoutes = require('./src/routes/businessHoursRoutes');
 const { protect } = require('./src/controllers/authController'); // Importa a função de proteção
 
 const app = express();
@@ -51,6 +52,7 @@ app.get('/planos', protect, (req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/servicos', serviceRoutes);
+app.use('/api/business-hours', businessHoursRoutes);
 
 // --- INICIALIZAÇÃO DO SERVIDOR ---
 
@@ -59,7 +61,7 @@ sequelize.sync({ alter: true }) // <--- ADICIONE { alter: true } AQUI
     .then(() => {
         app.listen(PORT, () => {
             console.log(`Servidor rodando na porta ${PORT}`);
-            console.log('Conexão com o banco de dados estabelecida com sucesso.');
+            console.log(`Conexão com o banco de dados estabelecida com sucesso. na URL http://localhost:${PORT}`);
         });
     })
     .catch(err => {
